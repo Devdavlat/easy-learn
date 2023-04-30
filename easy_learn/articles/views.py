@@ -33,15 +33,19 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+    def test_func(self):
+        article = self.get_object()
+        return article.author == self.request.user
+
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
     fields = ('title', 'summary', 'body', 'photo')
     template_name = 'articles/articles_update.html'
 
-    # def test_user_for_editing(self):
-    #     article = self.get_object()
-    #     return article.author == self.request.user
+    def test_func(self):
+        article = self.get_object()
+        return article.author == self.request.user
 
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):

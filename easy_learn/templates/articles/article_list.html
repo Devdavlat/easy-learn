@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Medium
+{% endblock %}
+
+{% block content %}
+    <h1>Stories</h1>
+    {% for article in object_list %}
+        <div class="card-group">
+            <div class="card">
+
+                <div class="card-body">
+                    <h3 class="card-title" style="color:#010724 ;"><a
+                            href="{% url 'article_detail' article.pk %}">{{ article.title }}</a></h3>
+                </div>
+                <img src="{{ article.photo.url }}" class="card-img-top" alt="..." style="width: 50rem">
+                <div class="card-body">
+                    {% if article.body|length >= 30 %}
+                        <h5 class="card-text" style="color:  #041c95 ; ">{{ article.body|safe |truncatewords:"20"}}<a
+                                href="{% url 'article_detail' article.pk %}">Detail</a></h5>
+                    {% else %}
+                        <h5 class="card-text" style="color:  #041c95 ; ">{{ article.body|safe }}<a
+                                href="{% url 'article_detail' article.pk %}">...Detail</a></h5>
+                    {% endif %}
+                    <p class="card-text" style="color:  #4f60b7 ">{{ article.summary }}</p>
+                    <p class="card-text" style="color:  #4f60b7 "> by : {{ article.author }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ article.date }}</small>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

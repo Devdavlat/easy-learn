@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Maqolani o'chirish</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>{{ article.title }} If you delete an article, the article will disappear forever. If you don't want to delete
+            it, you can add it to the deleted list ?</p>
+        <button class="btn btn-danger ml-2" type="submit">Delete story</button>
+    </form>
+
+{% endblock %}

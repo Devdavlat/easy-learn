@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ object.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>Detail page</h1>
+
+    <div class="card-group">
+        <div class="card">
+
+            <div class="card-body">
+                <h3 class="card-title" style="color:#010724 ;">{{ object.title }}</h3>
+            </div>
+            {% if object.photo.url %}
+                <img src="{{ object.photo.url }}" class="img-fluid card-img-top" alt="..."
+                     style="width: 50rem">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-text" style="color:  #041c95 ; ">{{ object.body|safe }}</h5>
+                <p class="card-text" style="color:  #4f60b7 ">{{ object.summary }}</p>
+            </div>
+
+            {#            {% clever_function %}#}
+            <div class="card-footer">
+                <p class="card-text" style="color:  #4f60b7 ">by : {{ object.author }}</p>
+                <small class="text-muted">Published date and time: {{ object.date }}</small>
+                <a href="{% url 'article_edit' object.pk %}">Edit |</a>
+                <a href="{% url 'article_delete' object.pk %}">Delete |</a>
+                <a href="{% url 'article_lists' %}">More stories</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

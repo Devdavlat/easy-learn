@@ -5,7 +5,7 @@
 
         {{ user.username }}!
         <p><a href="{% url 'logout' %}">Chiqib ketish</a></p>
-        <p><a href="{% url 'article_list' %}">Maqolalar</a></p>
+        <p><a href="{% url 'article_lists' %}">Maqolalar</a></p>
     {% else %}
         <a href="{% url 'login' %}">Login</a>
         <a href="{% url 'signup' %}">Signup</a>
